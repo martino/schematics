@@ -332,6 +332,9 @@ class Model(object):
     def items(self):
         return [(k, self.get(k)) for k in iterkeys(self._fields)]
 
+    def rogue(self):
+        return self._data.get('rogue')
+
     def values(self):
         return [self.get(k) for k in iterkeys(self._fields)]
 
@@ -403,7 +406,7 @@ class Model(object):
         return u"<%s: %s>" % (class_name, obj)
 
     def __str__(self):
-        return '%s object' % self.__class__.__name__        
+        return '%s object' % self.__class__.__name__
 
     def __unicode__(self):
         return '%s object' % self.__class__.__name__
