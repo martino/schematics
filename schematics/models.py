@@ -217,11 +217,11 @@ class Model(object):
     #__metaclass__ = ModelMeta
     __optionsclass__ = ModelOptions
 
-    def __init__(self, raw_data=None, deserialize_mapping=None, strict=True):
+    def __init__(self, raw_data=None, deserialize_mapping=None, strict=True, partial=True):
         if raw_data is None:
             raw_data = {}
         self._initial = raw_data
-        self._data = self.convert(raw_data, strict=strict, mapping=deserialize_mapping)
+        self._data = self.convert(raw_data, strict=strict, mapping=deserialize_mapping, partial=partial)
 
     def validate(self, partial=False, strict=False):
         """
@@ -403,7 +403,7 @@ class Model(object):
         return u"<%s: %s>" % (class_name, obj)
 
     def __str__(self):
-        return '%s object' % self.__class__.__name__        
+        return '%s object' % self.__class__.__name__
 
     def __unicode__(self):
         return '%s object' % self.__class__.__name__
