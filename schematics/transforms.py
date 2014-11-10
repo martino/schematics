@@ -79,6 +79,14 @@ def import_loop(cls, instance_or_dict, field_converter, context=None,
         for field in rogue_fields:
             errors[field] = 'Rogue field'
 
+    # If not strict store rouge fields
+    if not strict and len(rogue_fields) > 0:
+        rogue_data = {}
+        if is_dict:
+            for field in rogue_fields:
+                rogue_data[field] = instance_or_dict.get(field, '')
+        data['rogue'] = rogue_data
+
     for field_name, field in iteritems(cls._fields):
         serialized_field_name = field.serialized_name or field_name
 

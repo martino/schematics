@@ -332,6 +332,9 @@ class Model(object):
     def items(self):
         return [(k, self.get(k)) for k in iterkeys(self._fields)]
 
+    def rogue(self):
+        return self._data.get('rogue')
+
     def values(self):
         return [self.get(k) for k in iterkeys(self._fields)]
 
