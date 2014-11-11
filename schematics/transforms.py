@@ -85,7 +85,7 @@ def import_loop(cls, instance_or_dict, field_converter, context=None,
         if is_dict:
             for field in rogue_fields:
                 rogue_data[field] = instance_or_dict.get(field, '')
-        data['rogue'] = rogue_data
+        data['rogue'] = rogue_data.get('rogue', rogue_data)
 
     for field_name, field in iteritems(cls._fields):
         serialized_field_name = field.serialized_name or field_name
